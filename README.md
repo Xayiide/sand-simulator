@@ -1,5 +1,5 @@
 # sand-simulator
-Un simulador de arena con SDL
+Un simulador de arena con SDL. Al principio será un arenero (*jeje*) para hacer pruebas con SDL.
 
 # Instalación
 Librerías:
