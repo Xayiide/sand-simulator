@@ -1,12 +1,12 @@
-CC     = gcc
+CC     = g++
 CFLAGS = -g -Wall -Wextra -Wpedantic
 LFLAGS = -lSDL2main -lSDL2 -lSDL2_image
 
 .PHONY: all clean re run
 
 TGT  = main
-SRCS = main.c
-OBJS = $(SRCS:.c=.o)
+SRCS = main.cpp
+OBJS = $(SRCS:.cpp=.o)
 
 all: $(TGT)
 

@@ -18,23 +18,28 @@ int main()
     }
 
     /* Creamos la ventana */
-    SDL_Window *win = SDL_CreateWindow("Prueba", SDL_WINDOWPOS_CENTERED,
-            SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_OPENGL);
+    SDL_Window *win = SDL_CreateWindow("Barra de salud",
+            SDL_WINDOWPOS_UNDEFINED,
+            SDL_WINDOWPOS_UNDEFINED,
+            800, 600,
+            SDL_WINDOW_SHOWN);
     if (win == NULL) {
         fprintf(stderr, "[sdl]: Error en la creación de la ventana.\n");
         exit(EXIT_FAILURE);
     }
 
     /* Necesitamos un renderizador */
-    SDL_Renderer *rnd = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
+    SDL_Renderer *rnd = SDL_CreateRenderer(win,
+            -1,
+            SDL_RENDERER_ACCELERATED);
     if (rnd == NULL) {
         fprintf(stderr, "[sdl]: Error creando el renderizador.\n");
         exit(EXIT_FAILURE);
     }
 
     /* Ahora necesitamos la imagen */
-    SDL_Surface *lechuga = IMG_Load("../img/lettuce.png");
-    if (lechuga == NULL) {
+    SDL_Surface *barra = IMG_Load("../img/barrasalud.png");
+    if (barra == NULL) {
         fprintf(stderr, "[sdl] Error cargando la imagen.\n");
         exit(EXIT_FAILURE);
     }
@@ -46,12 +51,16 @@ int main()
      * crear una textura. Se asocia con el renderizador y con la
      * Surface que queremos convertir en textura */
 
-    SDL_Texture *text_lechuga = SDL_CreateTextureFromSurface(rnd, lechuga);
-    if (text_lechuga == NULL) {
+    SDL_Texture *text_barra = SDL_CreateTextureFromSurface(rnd, barra);
+    if (text_barra == NULL) {
         fprintf(stderr, "[sdl]: Error creando textura.\n");
         exit(EXIT_FAILURE);
     }
-    SDL_FreeSurface(lechuga);
+    SDL_FreeSurface(barra);
+
+    SDL_Rect rect{100, 100, 200, 22};
+
+    int x = 0; /* posición del ratón */
 
     /* Para que el programa siga corriendo indefinidamente, hacemos un
      * bucle infinito */
@@ -61,14 +70,30 @@ int main()
             if (e.type == SDL_QUIT) {
                 break;
             }
-        }
+            if (e.type == SDL_MOUSEMOTION) {
+                x = e.motion.x;
 
+                if (x < 196)
+                    x = 196;
+
+                if (x > 392)
+                    x = 392;
+            }
+        }
+        SDL_Rect rect2{102, 102, (x - 196), 18};
+
+        SDL_SetRenderDrawColor(rnd, 255, 255, 255, 255);
         SDL_RenderClear(rnd);
-        SDL_RenderCopy(rnd, text_lechuga, NULL, NULL);
+
+        SDL_RenderCopy(rnd, text_barra, NULL, &rect);
+
+        SDL_SetRenderDrawColor(rnd, 255, 0, 0, 255);
+        SDL_RenderFillRect(rnd, &rect2);
+
         SDL_RenderPresent(rnd);
     }
 
-    SDL_DestroyTexture(text_lechuga);
+    SDL_DestroyTexture(text_barra);
     SDL_DestroyRenderer(rnd);
     SDL_DestroyWindow(win);
 
