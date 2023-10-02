@@ -58,7 +58,8 @@ int main()
     }
     SDL_FreeSurface(barra);
 
-    SDL_Rect rect{100, 100, 200, 22};
+    /* Rectángulo de la barra de vida */
+    SDL_Rect rect{100, 100, 200, 22}; /* x, y, ancho, alto */
 
     int x = 0; /* posición del ratón */
 
@@ -73,14 +74,14 @@ int main()
             if (e.type == SDL_MOUSEMOTION) {
                 x = e.motion.x;
 
-                if (x < 196)
-                    x = 196;
+                if (x < 102)
+                    x = 102;
 
-                if (x > 392)
-                    x = 392;
+                if (x > 298)
+                    x = 298;
             }
         }
-        SDL_Rect rect2{102, 102, (x - 196), 18};
+        SDL_Rect rect2{102, 102, (x - 102), 18};
 
         SDL_SetRenderDrawColor(rnd, 255, 255, 255, 255);
         SDL_RenderClear(rnd);
