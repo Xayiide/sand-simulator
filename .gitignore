@@ -1,3 +1,11 @@
+# Directorio de imágenes
+img/
+
+# Ficheros de eclipse
+.project
+.cproject
+.settings
+
 # Prerequisites
 *.d
 
