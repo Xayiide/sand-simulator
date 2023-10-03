@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
 
 	GPU_Target *window = GPU_InitRenderer(GPU_RENDERER_OPENGL_3, 200, 200, GPU_DEFAULT_INIT_FLAGS);
 
-	GPU_Image *hero = GPU_LoadImage("adventurer-sheet.png");
+	GPU_Image *hero = GPU_LoadImage("../../img/adventurer-sheet.png");
 
 	std::vector<GPU_Rect> rects;
 

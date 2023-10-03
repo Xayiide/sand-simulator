@@ -1,3 +1,3 @@
 # Cosas
-Este ejemplo compila y ejecuta pero no muestra nada. Ni suquiera con la versión calcada del [tutorial](https://glusoft.com/sdl2-tutorials/sprite-animations-sdl/).
+Este ejemplo compila y ejecuta y muestra la animación bien siempre y cuando pongas la ruta a la imagen de sprites correctamente, claro.
 
