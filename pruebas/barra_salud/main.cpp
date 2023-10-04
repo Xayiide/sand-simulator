@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <cstdlib>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -38,7 +38,7 @@ int main()
     }
 
     /* Ahora necesitamos la imagen */
-    SDL_Surface *barra = IMG_Load("../img/barrasalud.png");
+    SDL_Surface *barra = IMG_Load("../../img/barrasalud.png");
     if (barra == NULL) {
         fprintf(stderr, "[sdl] Error cargando la imagen.\n");
         exit(EXIT_FAILURE);
