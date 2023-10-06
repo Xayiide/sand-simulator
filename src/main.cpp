@@ -1,5 +1,6 @@
-#include <iostream>
-#include <cstdlib>
+#include <iostream> /* cerr                  */
+#include <cstdlib>  /* exit                  */
+#include <chrono>   /* high_resolution_clock */
 
 #include <SDL2/SDL.h>
 
@@ -30,9 +31,11 @@ static void switch_color()
 
 int main()
 {
-    SDL_Event     e;
-    SDL_Window   *win      = nullptr;
-    bool          run      = true;
+    std::chrono::duration<double> diff;
+    std::chrono::duration<double> max = std::chrono::seconds(2);
+    SDL_Event   e;
+    SDL_Window *win = nullptr;
+    bool        run = true;
 
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) < 0)
     {
@@ -73,6 +76,8 @@ int main()
 
     SDL_SetRenderTarget(rnd, nullptr);
 
+    auto t1 = std::chrono::high_resolution_clock::now();
+
     while (run)
     {
         while (SDL_PollEvent(&e))
@@ -95,6 +100,14 @@ int main()
             }
 
         }
+        auto t2 = std::chrono::high_resolution_clock::now();
+        diff = (t2 - t1);
+        if (diff > max)
+        {
+            switch_color();
+            t1 = t2; /* Hay desviación local pero bueno. TODO: delay until */
+        }
+
     }
 
     SDL_DestroyRenderer(rnd);

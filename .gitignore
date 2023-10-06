@@ -1,3 +1,7 @@
+# Ficheros intermedios
+*.swp
+
+
 # Directorio de imágenes
 img/
 
