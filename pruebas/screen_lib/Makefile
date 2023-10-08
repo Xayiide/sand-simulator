@@ -5,7 +5,7 @@ LFLAGS = -lSDL2
 .PHONY: all clean re run
 
 TGT  = main
-SRCS = main.cpp screen.cpp
+SRCS = main.cpp screen.cpp vec3.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(TGT)
